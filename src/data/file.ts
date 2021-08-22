@@ -431,11 +431,19 @@ export function parseMarkdown(path: string, contents: string, inlineRegex: RegEx
         if (simpleName.length > 0 && simpleName != match[1].trim()) {
             fields.set(simpleName, (fields.get(simpleName) ?? []).concat([inlineField]));
         }
+
+        // get the comment
+        let comment = "";
+        let commentRegex = /\/\/(.*)/;
+        let commentMatch = line.match(commentRegex);
+        if (commentMatch != null) comment = commentMatch[1]
+
+        fields.set(`${name}-comments`, (fields.get(`${name}-comments`) ?? []).concat([comment]));
     }
 
     // And extract tasks...
     let tasks = findTasksInFile(path, contents);
-
+    // if (fields.has('poop')) fields.set('inline-fields', fields)
     return { fields, tasks };
 }
 

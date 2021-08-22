@@ -8,7 +8,7 @@
     "allowJs": false,
     "noImplicitAny": true,
     "strictFunctionTypes": true,
-    "strictNullChecks": true,
+    "strictNullChecks": false,
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noUnusedLocals": true,
